@@ -4,6 +4,7 @@ function pipeEmit(event, event2, prefix = '') {
         old.emit(event, ...args)
         event2.emit(prefix + event, ...args)
     }
+    //check this later
     return {
         unpipeEmit() {
             event.emit = old
