@@ -21,3 +21,13 @@ function keepAlive() {
 }
 
 //more to come here
+export async function handler(chatUpdate) {
+    this.msgqueque = this.msgqueque || []
+    if (!chatUpdate)
+        return
+    this.pushMessage(chatUpdate.messages).catch(console.error)
+    let m = chatUpdate.messages[chatUpdate.messages.length - 1]
+    if (!m)
+        return
+    if (global.db.data == null)
+        await global.loadDatabase()
